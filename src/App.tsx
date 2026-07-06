@@ -47,6 +47,20 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+
+  useEffect(() => {
+    // Detect iOS Safari (not standalone)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (navigator as any).standalone;
+    
+    const isDismissed = sessionStorage.getItem("xezri_install_dismissed");
+
+    if (isIOS && !isStandalone && !isDismissed) {
+      setShowInstallPrompt(true);
+    }
+  }, []);
+
   const handleTriggerBooster = () => {
     let nextMsg = activeBoosterMsg;
     while (nextMsg === activeBoosterMsg) {
@@ -286,6 +300,58 @@ function App() {
               )}
             </AnimatePresence>
 
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* iOS PWA Installation Guide Overlay */}
+      <AnimatePresence>
+        {showInstallPrompt && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-28 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50 p-5 rounded-2xl bg-navy-dark/95 border border-gold/45 shadow-[0_15px_40px_rgba(0,0,0,0.6)] backdrop-blur-md text-center space-y-4"
+          >
+            <div className="flex justify-between items-start">
+              <span className="font-display text-[9px] tracking-widest text-gold uppercase block text-left">
+                PWA App installieren 📲
+              </span>
+              <button 
+                onClick={() => {
+                  sessionStorage.setItem("xezri_install_dismissed", "true");
+                  setShowInstallPrompt(false);
+                }} 
+                className="text-sage/60 hover:text-gold text-xs cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="font-sans text-xs text-sage/95 text-left leading-relaxed">
+              Installiere <strong>Xəzri</strong> als App auf deinem iPhone, um alle Widgets offline zu nutzen und sie direkt auf deinem Homescreen zu starten!
+            </p>
+
+            <div className="bg-slate-950/40 rounded-xl p-3.5 border border-slate-900/60 text-[11px] text-sage/90 text-left space-y-2 font-light">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold text-[10px]">1</span>
+                <span>Tippe unten in Safari auf den <strong>Teilen-Button</strong> (Share-Icon 📤).</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold text-[10px]">2</span>
+                <span>Wähle im Menü <strong>„Zum Home-Bildschirm“</strong> (Add to Home Screen ➕).</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                sessionStorage.setItem("xezri_install_dismissed", "true");
+                setShowInstallPrompt(false);
+              }}
+              className="w-full py-2.5 rounded-xl bg-gold text-navy-dark font-display text-[10px] tracking-widest uppercase font-semibold transition-colors hover:bg-gold-light active:scale-95 cursor-pointer"
+            >
+              Verstanden
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
