@@ -232,14 +232,14 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
       <div className="glass-panel gold-border p-5 rounded-3xl flex flex-col relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-light/10 to-navy-dark/40 pointer-events-none" />
         
-        <div className="flex items-center justify-between mb-4 border-b border-gold/10 pb-2 z-10">
-          <span className="font-display text-xs tracking-widest text-gold uppercase flex items-center gap-1.5 animate-pulse flex-1 min-w-0 truncate mr-2">
+        <div className="flex flex-col gap-1 mb-4 border-b border-gold/10 pb-3.5 z-10">
+          <div className="flex items-center gap-1.5 text-gold font-display text-xs tracking-widest uppercase animate-pulse">
             <Car size={12} className="flex-shrink-0" />
             Die Strecke (Hof ➔ Hamburg)
-          </span>
-          <span className="font-sans text-[10px] tracking-widest text-sage/75 uppercase font-medium tabular-nums min-w-[130px] text-right flex-shrink-0">
+          </div>
+          <div className="font-sans text-[10px] tracking-widest text-sage/75 uppercase font-medium tabular-nums">
             Entfernung: {activeLog.km} / 525 km
-          </span>
+          </div>
         </div>
 
         {/* SVG Map (Landscape - Full Width) */}
@@ -278,7 +278,7 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
             </g>
 
             {/* Clickable Erfurt/Kassel Node (Middle) */}
-            <g transform="translate(115, 85)" className="cursor-pointer" onClick={() => animateCarTo(50)}>
+            <g transform="translate(115, 77)" className="cursor-pointer" onClick={() => animateCarTo(50)}>
               <circle r="6" fill={travelProgress > 40 && travelProgress < 60 ? "#e5c158" : "#94a3b8"} opacity="0.3" className={travelProgress > 40 && travelProgress < 60 ? "animate-ping" : ""} />
               <circle r="4.5" fill={travelProgress > 40 && travelProgress < 60 ? "#e5c158" : "#94a3b8"} stroke="#0b132b" strokeWidth="1" />
               <text x="10" y="-8" fill="#94a3b8" className="font-display text-[9px] tracking-wider" textAnchor="start">
