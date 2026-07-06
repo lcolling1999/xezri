@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512" fill="none">
+  <!-- Outer Gold Frame (Thick) -->
+  <rect x="24" y="24" width="464" height="464" rx="96" stroke="#d4af37" stroke-width="28" stroke-opacity="0.85" />
+  
+  <!-- Buta Path (Very Thick) -->
+  <path 
+    d="M 256 410 C 176 410, 128 340, 128 250 C 128 160, 200 110, 256 60 C 284 35, 296 15, 296 0 C 296 -8, 291 -8, 285 0 C 264 32, 232 75, 232 125 C 232 175, 280 215, 323 260 C 365 305, 365 360, 336 390 C 320 410, 288 410, 256 410 Z" 
+    stroke="#d4af37" 
+    stroke-width="44" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  />
+  
+  <!-- Inner Detail Buta (Thick) -->
+  <path 
+    d="M 256 380 C 200 380, 160 325, 160 250 C 160 175, 215 135, 256 95 C 270 82, 274 68, 274 60 C 274 55, 271 55, 268 60 C 255 78, 239 110, 239 135 C 239 175, 274 205, 305 240 C 336 275, 336 320, 312 345 C 300 360, 280 380, 256 380 Z" 
+    stroke="#d4af37" 
+    stroke-width="20" 
+    stroke-dasharray="24 24"
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    stroke-opacity="0.8"
+  />
+</svg>

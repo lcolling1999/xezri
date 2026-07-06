@@ -1,0 +1,52 @@
+{
+  "firstWorkDay": "2026-07-07T09:00:00.000+02:00",
+  "nextMeetingDate": "2026-07-24T18:00:00.000+02:00",
+  "whatsappNumber": "+491751151056",
+  "whatsappText": "Hallo! Schau mal, so sieht mein Schreibtisch in Hamburg heute aus... ☕🇦🇿🇩🇪",
+  "developerEmail": "developer@example.com",
+  "timeline": [
+    {
+      "id": 1,
+      "date": "März 2025",
+      "title": "Ankunft in Deutschland",
+      "description": "Dein Abenteuer beginnt! Du kommst nach Deutschland und startest dein Studium (Digital Business Management) im fränkischen Hof.",
+      "imageEmoji": "🎓"
+    },
+    {
+      "id": 2,
+      "date": "Winter 2025/26",
+      "title": "Durchhaltevermögen & Stärke",
+      "description": "Eine intensive Zeit der Jobsuche. Trotz vieler Absagen und großer Hürden lässt du dich nicht entmutigen - dein Wille bleibt ungebrochen.",
+      "imageEmoji": "💪"
+    },
+    {
+      "id": 3,
+      "date": "24. - 26. April 2026",
+      "title": "Familienbande & Herzlichkeit",
+      "description": "Ein unvergessliches Wochenende in Salzburg: Ich lerne zum ersten Mal einen Teil deiner Familie kennen. Von ihrer Aufrichtigkeit und herzlichen Gastfreundschaft bin ich zutiefst berührt - und habe die gemeinsame Zeit mit dir unglaublich genossen. ❤️",
+      "imageEmoji": "🏡"
+    },
+    {
+      "id": 4,
+      "date": "02. Juli 2026",
+      "title": "Der erlösende Moment",
+      "description": "Die schönste Nachricht: Ich erfahre von deiner lang ersehnten Zusage! All die Mühe und das geduldige Durchhalten haben sich endlich ausgezahlt.",
+      "imageEmoji": "🎉"
+    },
+    {
+      "id": 5,
+      "date": "07. Juli 2026",
+      "title": "Start in Hamburg",
+      "description": "Dein neuer Job in der Hansestadt geht los! Ein ganz neuer Lebensabschnitt in Hamburg beginnt. Du rockst das! ⚓✨",
+      "imageEmoji": "⚓"
+    }
+  ],
+  "hamburgChecklist": [
+    { "id": "elbphi", "label": "Elbphilharmonie Plaza besuchen", "description": "Die Aussicht über den Hafen genießen." },
+    { "id": "franzbrot", "label": "Franzbrötchen schlemmen", "description": "Das Hamburger Kultgebäck probieren." },
+    { "id": "speicherstadt", "label": "Abendspaziergang in der Speicherstadt", "description": "Die beleuchteten Fleete bewundern." },
+    { "id": "alster", "label": "Alsterrundweg laufen / Alsterwasser trinken", "description": "Die Idylle mitten in der Stadt genießen." },
+    { "id": "planten", "label": "Wasserlichtspiele in Planten un Blomen", "description": "Ein magischer Sommerabend." },
+    { "id": "fischmarkt", "label": "Früh morgens über den Fischmarkt schlendern", "description": "Echtes Hamburger Flair erleben." }
+  ]
+}
