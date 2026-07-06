@@ -143,7 +143,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
-      setTimeout(() => setShowSecretEgg(false), 9000);
+      setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (cleaned === "finance" || cleaned === "10 year experience in finance" || cleaned === "ten year experience in finance") {
       setSecretEggData({
         title: "📈 Ms. Shams' Finance Expertise",
@@ -160,7 +160,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
-      setTimeout(() => setShowSecretEgg(false), 9000);
+      setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (
       cleaned === "frauenhände" || 
       cleaned === "frauenhaende" || 
@@ -185,7 +185,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
-      setTimeout(() => setShowSecretEgg(false), 9000);
+      setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (cleaned === "isch mochte sagen") {
       setSecretEggData({
         title: "🎙️ Isch mochte sagen...",
@@ -202,7 +202,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
-      setTimeout(() => setShowSecretEgg(false), 9000);
+      setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (
       cleaned.includes("10 jahre") || 
       cleaned.includes("zehn jahre") || 
@@ -771,7 +771,7 @@ export const CulturalCounters = ({
               <div className="w-12 h-[1px] bg-gold/30 mx-auto mt-6 mb-5" />
 
               <p className="font-sans text-[9px] tracking-widest text-slate-400 uppercase">
-                Schließt automatisch in einigen Sekunden
+                Tippe irgendwo zum Schließen
               </p>
             </motion.div>
           </motion.div>

@@ -200,7 +200,7 @@ function App() {
 
             {/* Floating iOS Bottom Navigation Bar */}
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-40">
-              <div className="glass-panel gold-border shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-full px-3 py-3 flex items-center justify-around relative">
+              <div className="bg-navy-dark/95 backdrop-blur-lg border border-gold/30 shadow-[0_12px_35px_rgba(0,0,0,0.6)] rounded-full px-3 py-3 flex items-center justify-around relative">
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeTab === tab.id;
@@ -223,12 +223,12 @@ function App() {
                       <Icon
                         size={18}
                         className={`transition-colors duration-300 ${
-                          isActive ? "text-gold-light" : "text-sage/60"
+                          isActive ? "text-gold-light" : "text-sage/80"
                         }`}
                       />
                       <span
                         className={`font-display text-[9px] tracking-widest uppercase mt-1 transition-colors duration-300 ${
-                          isActive ? "text-offwhite font-medium" : "text-sage/50"
+                          isActive ? "text-offwhite font-semibold" : "text-sage/65"
                         }`}
                       >
                         {tab.label}

@@ -60,7 +60,6 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
     return localStorage.getItem("xezri_last_reviewed_week") || "";
   });
 
-  const [testFridayMode, setTestFridayMode] = useState(false);
   const [stressScore, setStressScore] = useState(5);
   const [successScore, setSuccessScore] = useState(5);
   const [vibeScore, setVibeScore] = useState(5);
@@ -70,8 +69,8 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
   const isFriday = today.getDay() === 5;
   const isAfter16 = today.getHours() >= 16;
   const currentWeek = getWeekString();
-  const alreadyReviewed = lastReviewedWeek === currentWeek && !testFridayMode;
-  const isFridayRitualActive = (isFriday && isAfter16) || testFridayMode;
+  const alreadyReviewed = lastReviewedWeek === currentWeek;
+  const isFridayRitualActive = isFriday && isAfter16;
 
   const handleSaveReview = (e: FormEvent) => {
     e.preventDefault();
@@ -87,10 +86,8 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
     setReviews(updated);
     localStorage.setItem("xezri_weekly_reviews", JSON.stringify(updated));
     
-    if (!testFridayMode) {
-      setLastReviewedWeek(currentWeek);
-      localStorage.setItem("xezri_last_reviewed_week", currentWeek);
-    }
+    setLastReviewedWeek(currentWeek);
+    localStorage.setItem("xezri_last_reviewed_week", currentWeek);
     
     setShowMemeUnlocked(true);
 
@@ -155,9 +152,9 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
     const t = progress / 100;
     const mt = 1 - t;
 
-    // Control points: P0=(200, 130), P1=(170, 140), P2=(100, 80), P3=(40, 30)
-    // We adjust them to fit a nice curved route line
-    const x = mt*mt*mt * 200 + 3*mt*mt*t * 165 + 3*mt*t*t * 90 + t*t*t * 40;
+    // Control points: P0=(200, 130), P1=(170, 140), P2=(115, 80), P3=(65, 30)
+    // We adjust them to fit a nice curved route line (giving Hamburg 25px more room)
+    const x = mt*mt*mt * 200 + 3*mt*mt*t * 165 + 3*mt*t*t * 115 + t*t*t * 65;
     const y = mt*mt*mt * 130 + 3*mt*mt*t * 135 + 3*mt*t*t * 70 + t*t*t * 30;
 
     return { x, y };
@@ -236,11 +233,11 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-light/10 to-navy-dark/40 pointer-events-none" />
         
         <div className="flex items-center justify-between mb-4 border-b border-gold/10 pb-2 z-10">
-          <span className="font-display text-xs tracking-widest text-gold uppercase flex items-center gap-1.5 animate-pulse">
-            <Car size={12} />
-            Die Strecke zwischen uns (Hof ➔ Hamburg)
+          <span className="font-display text-xs tracking-widest text-gold uppercase flex items-center gap-1.5 animate-pulse flex-1 min-w-0 truncate mr-2">
+            <Car size={12} className="flex-shrink-0" />
+            Die Strecke (Hof ➔ Hamburg)
           </span>
-          <span className="font-sans text-[10px] tracking-widest text-sage/75 uppercase font-medium">
+          <span className="font-sans text-[10px] tracking-widest text-sage/75 uppercase font-medium tabular-nums min-w-[130px] text-right flex-shrink-0">
             Entfernung: {activeLog.km} / 525 km
           </span>
         </div>
@@ -257,7 +254,7 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
           >
             {/* Dashed background track */}
             <path
-              d="M 200 130 C 165 135, 90 70, 40 30"
+              d="M 200 130 C 165 135, 115 70, 65 30"
               stroke="rgba(212, 175, 55, 0.08)"
               strokeWidth="3"
               strokeDasharray="4 4"
@@ -265,7 +262,7 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
 
             {/* Glowing Golden Route path */}
             <path
-              d="M 200 130 C 165 135, 90 70, 40 30"
+              d="M 200 130 C 165 135, 115 70, 65 30"
               stroke="url(#routeGoldGrad)"
               strokeWidth="2.5"
               strokeLinecap="round"
@@ -290,7 +287,7 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
             </g>
 
             {/* Clickable Hamburg Node */}
-            <g transform="translate(40, 30)" className="cursor-pointer" onClick={() => animateCarTo(100)}>
+            <g transform="translate(65, 30)" className="cursor-pointer" onClick={() => animateCarTo(100)}>
               <circle r="10" fill="#d4af37" opacity="0.25" className={travelProgress === 100 ? "animate-ping" : "animate-pulse"} />
               <circle r="6" fill="#0b132b" stroke="#d4af37" strokeWidth="1.5" />
               <circle r="3.5" fill={travelProgress === 100 ? "#e5c158" : "#d4af37"} />
@@ -448,7 +445,6 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
         </div>
       </div>
 
-      {/* Friday Feierabend-Ritual Section */}
       <div className="w-full border-t border-gold/15 pt-12 mt-16 space-y-8">
         <div className="flex items-center justify-between border-b border-gold/10 pb-4 mb-2">
           <div className="flex items-center gap-2">
@@ -457,13 +453,6 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
               Feierabend-Ritual
             </h3>
           </div>
-          {/* Developer Test Mode Switch */}
-          <button
-            onClick={() => setTestFridayMode(!testFridayMode)}
-            className="font-display text-[9px] tracking-wider bg-gold/5 border border-gold/25 hover:border-gold text-gold-light px-2.5 py-0.5 rounded-full cursor-pointer transition-all"
-          >
-            {testFridayMode ? "[Testmodus An]" : "[Testmodus Aus]"}
-          </button>
         </div>
 
         <p className="font-sans text-xs text-sage leading-relaxed font-light">

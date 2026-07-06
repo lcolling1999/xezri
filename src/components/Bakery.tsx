@@ -251,7 +251,7 @@ export const Bakery = () => {
                 className="glass-panel gold-border hover:border-gold/60 p-5 rounded-3xl cursor-pointer flex flex-col items-center text-center transition-all duration-300 hover:scale-102 group"
               >
                 <div className="w-16 h-16 rounded-full bg-gold/5 border border-gold/15 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-3xl">🔸</span>
+                  <span className="text-3xl">🔶</span>
                 </div>
                 <h3 className="font-display text-base font-normal tracking-wide text-offwhite">
                   Paxlava
