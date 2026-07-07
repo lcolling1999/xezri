@@ -83,7 +83,6 @@ function App() {
   const handleTabChange = (tabId: TabType) => {
     setActiveTab(tabId);
     triggerHaptic(12); // Short gentle vibe tap
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Tab definitions (4 elegant items for navigation)
