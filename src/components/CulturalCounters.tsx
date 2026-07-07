@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, RotateCcw, Share2, Flame, Wind, Compass, Key, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
+import { triggerHaptic } from "../utils/haptics";
 
 interface CulturalCountersProps {
   firstWorkDay: string;
@@ -143,6 +144,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
+      triggerHaptic([80, 50, 80]); // Success double-vibe
       setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (cleaned === "finance" || cleaned === "10 year experience in finance" || cleaned === "ten year experience in finance") {
       setSecretEggData({
@@ -160,6 +162,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
+      triggerHaptic([80, 50, 80]); // Success double-vibe
       setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (
       cleaned === "frauenhände" || 
@@ -185,6 +188,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
+      triggerHaptic([80, 50, 80]); // Success double-vibe
       setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (cleaned === "isch mochte sagen") {
       setSecretEggData({
@@ -202,6 +206,7 @@ export const CulturalCounters = ({
         disableForReducedMotion: true
       });
 
+      triggerHaptic([80, 50, 80]); // Success double-vibe
       setTimeout(() => setShowSecretEgg(false), 30000);
     } else if (
       cleaned.includes("10 jahre") || 
@@ -219,6 +224,7 @@ export const CulturalCounters = ({
         colors: ["#ef4444"],
         disableForReducedMotion: true
       });
+      triggerHaptic(120); // Failure single vibe buzz
       setVaultInput("");
     }
   };

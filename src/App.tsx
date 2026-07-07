@@ -8,6 +8,7 @@ import { Bakery } from "./components/Bakery";
 import { Countdown } from "./components/Countdown";
 import { WeatherWidget } from "./components/WeatherWidget";
 import { Compass, Anchor, Coffee, Heart, Cookie, Sparkles } from "lucide-react";
+import { triggerHaptic } from "./utils/haptics";
 import configData from "./config.json";
 import type { AppConfig } from "./types";
 import confetti from "canvas-confetti";
@@ -77,6 +78,12 @@ function App() {
       colors: ["#d4af37", "#e5c158"],
       disableForReducedMotion: true
     });
+  };
+
+  const handleTabChange = (tabId: TabType) => {
+    setActiveTab(tabId);
+    triggerHaptic(12); // Short gentle vibe tap
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Tab definitions (4 elegant items for navigation)
@@ -222,7 +229,7 @@ function App() {
                   return (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
+                      onClick={() => handleTabChange(tab.id)}
                       className="relative flex flex-col items-center justify-center py-1.5 px-2.5 z-10 transition-colors duration-300 min-w-[70px]"
                     >
                       {/* Active Background Bubble Indicator */}
