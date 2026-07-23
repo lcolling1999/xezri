@@ -1,6 +1,15 @@
 {
+  "appVersion": "1.6.0",
+  "changelog": [
+    "📅 Neu: Das 'Hamburg Weekend' Agenda-Dashboard (24. – 26. Juli)",
+    "🎡 Sommerdom Achterbahn-Foto & Geheimnis-Dinner Enthüllung (Mezedes 🇬🇷)",
+    "🗺️ Google Maps Navigation & Konfetti-Häkchen für alle Erlebnisse",
+    "🧶 Knitty Stimmungs-Wechsler (😊 / 😐 / 😮) & Quick-Access Overlay Button",
+    "🔍 Versteckte Knitty Easter-Eggs auf allen Menüpunkten (Auto, Bäcker, Tee, Kapitän)",
+    "🔥 Wiedersehen-Counter: FEST GEPLANT am 24.07. um 20:00 Uhr!"
+  ],
   "firstWorkDay": "2026-07-07T09:00:00.000+02:00",
-  "nextMeetingDate": "2026-07-24T18:00:00.000+02:00",
+  "nextMeetingDate": "2026-07-24T20:00:00.000+02:00",
   "whatsappNumber": "+491751151056",
   "whatsappText": "Hallo! Schau mal, so sieht mein Schreibtisch in Hamburg heute aus... ☕🇦🇿🇩🇪",
   "developerEmail": "developer@example.com",

@@ -6,8 +6,11 @@ import { Ticket, Gift, CheckCircle } from "lucide-react";
 import { DailyFragments } from "./DailyFragments";
 import configData from "../config.json";
 
+import { KnittyTraveler } from "./KnittyPet";
+
 interface TimelineProps {
   items: Milestone[];
+  onOpenKnitty?: () => void;
 }
 
 const AZ_WORDS = [
@@ -19,7 +22,7 @@ const AZ_WORDS = [
   { word: "Gözəl", pron: "[gœ-zæl]", trans: "Wunderschön", desc: "Deine herzliche Art und dein Lächeln machen jeden Tag in deiner neuen Heimat zu etwas Besonderem. 🌸" }
 ];
 
-export const Timeline = ({ items }: TimelineProps) => {
+export const Timeline = ({ items, onOpenKnitty }: TimelineProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Track scroll progress for the vertical golden line
@@ -116,12 +119,13 @@ export const Timeline = ({ items }: TimelineProps) => {
   return (
     <section ref={containerRef} className="relative py-16 px-4 md:px-8 w-full max-w-lg mx-auto">
       {/* Header */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 flex flex-col items-center">
         <h2 className="font-display text-2xl font-light tracking-[0.2em] uppercase gold-gradient-text gold-text-glow">
           Deine Story
         </h2>
-        <div className="w-12 h-[1px] bg-gold/50 mx-auto mt-3" />
-        <p className="font-sans text-xs tracking-wider text-sage mt-2">
+        <div className="w-12 h-[1px] bg-gold/50 mx-auto mt-3 mb-4" />
+        <KnittyTraveler onClick={onOpenKnitty} />
+        <p className="font-sans text-xs tracking-wider text-sage mt-3">
           Dein Weg und Durchhaltevermögen bis nach Hamburg
         </p>
       </div>

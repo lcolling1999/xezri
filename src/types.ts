@@ -13,6 +13,8 @@ export interface ChecklistItem {
 }
 
 export interface AppConfig {
+  appVersion: string;
+  changelog: string[];
   firstWorkDay: string;
   nextMeetingDate: string | null;
   whatsappNumber: string;

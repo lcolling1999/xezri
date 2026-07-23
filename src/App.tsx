@@ -7,6 +7,9 @@ import { CulturalCounters } from "./components/CulturalCounters";
 import { Bakery } from "./components/Bakery";
 import { Countdown } from "./components/Countdown";
 import { WeatherWidget } from "./components/WeatherWidget";
+import { ChangelogModal } from "./components/ChangelogModal";
+import { UpdatePrompt } from "./components/UpdatePrompt";
+import { KnittyPet, KnittyAccent } from "./components/KnittyPet";
 import { Compass, Anchor, Coffee, Heart, Cookie, Sparkles } from "lucide-react";
 import { triggerHaptic } from "./utils/haptics";
 import configData from "./config.json";
@@ -31,6 +34,7 @@ function App() {
   const [showBooster, setShowBooster] = useState(false);
   const [activeBoosterMsg, setActiveBoosterMsg] = useState("");
   const [timeMode, setTimeMode] = useState<"morning" | "night" | "default">("default");
+  const [showKnittyModal, setShowKnittyModal] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
@@ -121,7 +125,7 @@ function App() {
                 <span className="text-[9px] tracking-widest text-sage/60 uppercase">
                   {timeMode === "morning" && "Sabahın xeyir, Xanım! ☀️"}
                   {timeMode === "night" && "Gecən xeyrə qalsın, Xanım! 🌙"}
-                  {timeMode === "default" && "Hamburg Abenteuer"}
+                  {timeMode === "default" && "Willkommen, Xanım! ✨"}
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -170,7 +174,7 @@ function App() {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Timeline items={config.timeline} />
+                    <Timeline items={config.timeline} onOpenKnitty={() => setShowKnittyModal(true)} />
                   </motion.div>
                 )}
 
@@ -182,7 +186,7 @@ function App() {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <HamburgDashboard checklistItems={config.hamburgChecklist} />
+                    <HamburgDashboard checklistItems={config.hamburgChecklist} onOpenKnitty={() => setShowKnittyModal(true)} />
                   </motion.div>
                 )}
 
@@ -200,6 +204,7 @@ function App() {
                       whatsappText={config.whatsappText}
                       developerEmail={config.developerEmail}
                       timeMode={timeMode}
+                      onOpenKnitty={() => setShowKnittyModal(true)}
                     />
                   </motion.div>
                 )}
@@ -212,10 +217,17 @@ function App() {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Bakery />
+                    <Bakery onOpenKnitty={() => setShowKnittyModal(true)} />
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* App Footer Version Tag */}
+              <div className="mt-12 text-center select-none">
+                <span className="font-display text-[10px] tracking-widest text-sage/40 uppercase">
+                  Xəzri PWA • v{config.appVersion}
+                </span>
+              </div>
             </main>
 
             {/* Floating iOS Bottom Navigation Bar */}
@@ -358,6 +370,51 @@ function App() {
             >
               Verstanden
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* PWA Service Worker Update Banner & Changelog Modal */}
+      <UpdatePrompt version={config.appVersion} />
+      <ChangelogModal version={config.appVersion} changelog={config.changelog} />
+
+      {/* Floating Knitty Quick-Access Pet Button */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => {
+          triggerHaptic(15);
+          setShowKnittyModal(true);
+        }}
+        className="fixed bottom-24 right-5 z-40 w-12 h-12 rounded-full bg-navy-dark/95 border-2 border-gold/60 shadow-[0_4px_20px_rgba(212,175,55,0.35)] backdrop-blur-md flex items-center justify-center cursor-pointer group"
+        aria-label="Knitty Pet öffnen"
+      >
+        <KnittyAccent size={28} />
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-gold rounded-full border border-navy-dark flex items-center justify-center text-[9px] font-bold text-navy-dark animate-pulse">
+          🧶
+        </div>
+      </motion.button>
+
+      {/* Knitty Pet Fullscreen/Modal Overlay */}
+      <AnimatePresence>
+        {showKnittyModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy-dark/95 backdrop-blur-md px-6 cursor-pointer"
+            onClick={() => setShowKnittyModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 15 }}
+              transition={{ type: "spring", damping: 18 }}
+              onClick={(e) => e.stopPropagation()}
+              className="max-w-sm w-full cursor-default"
+            >
+              <KnittyPet onClose={() => setShowKnittyModal(false)} />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

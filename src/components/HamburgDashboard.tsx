@@ -2,13 +2,16 @@ import { useEffect, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import type { ChecklistItem } from "../types";
+import { KnittySailor } from "./KnittyPet";
+import { WeekendAgenda } from "./WeekendAgenda";
 import { Anchor, CheckCircle, Car, Sliders, TrendingUp, Sparkles } from "lucide-react";
 
 interface HamburgDashboardProps {
   checklistItems: ChecklistItem[];
+  onOpenKnitty?: () => void;
 }
 
-export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
+export const HamburgDashboard = ({ checklistItems, onOpenKnitty }: HamburgDashboardProps) => {
   // Checklist State
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>(() => {
     const saved = localStorage.getItem("xezri_checklist");
@@ -224,18 +227,24 @@ export const HamburgDashboard = ({ checklistItems }: HamburgDashboardProps) => {
         </h2>
         <div className="w-12 h-[1px] bg-gold/50 mx-auto mt-3" />
         <p className="font-sans text-xs tracking-wider text-sage mt-2">
-          Dein Weg nach Norden & Hamburg Entdecker-Liste
+          Wochenend-Agenda (24.–26. Juli), Anreise & Hamburg Entdecker-Liste
         </p>
       </div>
 
-      {/* 1. UPGRADED INTERACTIVE ROUTE MAP CARD */}
+      {/* 1. HAMBURG WEEKEND AGENDA (24. - 26. JULI) */}
+      <WeekendAgenda />
+
+      {/* 2. UPGRADED INTERACTIVE ROUTE MAP CARD */}
       <div className="glass-panel gold-border p-5 rounded-3xl flex flex-col relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-light/10 to-navy-dark/40 pointer-events-none" />
         
         <div className="flex flex-col gap-1 mb-4 border-b border-gold/10 pb-3.5 z-10">
-          <div className="flex items-center gap-1.5 text-gold font-display text-xs tracking-widest uppercase animate-pulse">
-            <Car size={12} className="flex-shrink-0" />
-            Die Strecke (Hof ➔ Hamburg)
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-gold font-display text-xs tracking-widest uppercase animate-pulse">
+              <Car size={12} className="flex-shrink-0" />
+              Die Strecke (Hof ➔ Hamburg)
+            </div>
+            <KnittySailor onClick={onOpenKnitty} />
           </div>
           <div className="font-sans text-[10px] tracking-widest text-sage/75 uppercase font-medium tabular-nums">
             Entfernung: {activeLog.km} / 525 km

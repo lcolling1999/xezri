@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, RotateCcw, Share2, Flame, Wind, Compass, Key, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
 import { triggerHaptic } from "../utils/haptics";
+import { KnittyTea } from "./KnittyPet";
 
 interface CulturalCountersProps {
   firstWorkDay: string;
@@ -10,12 +11,14 @@ interface CulturalCountersProps {
   whatsappText: string;
   developerEmail: string;
   timeMode?: "morning" | "night" | "default";
+  onOpenKnitty?: () => void;
 }
 
 export const CulturalCounters = ({
   firstWorkDay,
   whatsappNumber,
   timeMode,
+  onOpenKnitty,
 }: CulturalCountersProps) => {
   // Tea Counter State
   const [teaCount, setTeaCount] = useState<number>(() => {
@@ -477,6 +480,11 @@ export const CulturalCounters = ({
               </button>
             </div>
           )}
+
+          {/* Knitty Tea Easter Egg Badge */}
+          <div className="w-full flex justify-center pt-3 border-t border-gold/10">
+            <KnittyTea onClick={onOpenKnitty} />
+          </div>
 
         </div>
       </div>

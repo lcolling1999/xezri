@@ -2,6 +2,11 @@ import { useState, useEffect, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Cookie, RotateCcw, Heart, Sparkles, ChefHat, Star, Trash2 } from "lucide-react";
+import { KnittyBaker } from "./KnittyPet";
+
+interface BakeryProps {
+  onOpenKnitty?: () => void;
+}
 
 interface Ingredient {
   id: string;
@@ -37,7 +42,7 @@ const RECIPES = {
 type PastryType = "shekerbura" | "pakhlava";
 type GameStage = "select" | "ingredients" | "baking" | "success";
 
-export const Bakery = () => {
+export function Bakery({ onOpenKnitty }: BakeryProps = {}) {
   const [stage, setStage] = useState<GameStage>("select");
   const [selectedPastry, setSelectedPastry] = useState<PastryType | null>(null);
   const [mixedIngredients, setMixedIngredients] = useState<string[]>([]);
@@ -201,13 +206,14 @@ export const Bakery = () => {
   return (
     <section className="py-12 px-4 md:px-8 w-full max-w-lg mx-auto space-y-8">
       {/* Header */}
-      <div className="text-center">
+      <div className="text-center flex flex-col items-center">
         <h2 className="font-display text-2xl font-light tracking-[0.2em] uppercase gold-gradient-text gold-text-glow flex items-center justify-center gap-2">
           <ChefHat className="text-gold animate-bounce" size={24} />
           Die digitale Bäckerei
         </h2>
-        <div className="w-12 h-[1px] bg-gold/50 mx-auto mt-3" />
-        <p className="font-sans text-xs tracking-wider text-sage mt-2">
+        <div className="w-12 h-[1px] bg-gold/50 mx-auto mt-3 mb-4" />
+        <KnittyBaker onClick={onOpenKnitty} />
+        <p className="font-sans text-xs tracking-wider text-sage mt-3">
           Ein Bereich für deine Back-Erfolge & eine süße Überraschung
         </p>
       </div>
